@@ -12,15 +12,17 @@ const thumbnails = [
         top: "50px",
         left: "",
         right: "20%",
-        text: "MUCEM",
+        head: "MUCEM",
+        text: "Experimental Website",
     },
     {
         id: 2,
         src: "src/assets/img2.png",
         alt: "Thumbnail 2",
         top: "120px",
-        text: "img 1",
         left: "15%",
+        head: "BIGGER SCIENCE",
+        text: "Immersive Experience / WebGL / Gaming",
     },
     {
         id: 3,
@@ -28,24 +30,25 @@ const thumbnails = [
         alt: "Thumbnail 3",
         top: "350px",
         left: "",
-        text: "img 1",
         right: "15%",
+        head: "OLIVE TREE",
+        text: "Interactive Installation / Real Time",
     },
     {
         id: 4,
         src: "src/assets/img3.png",
         alt: "Thumbnail 4",
         top: "450px",
-        text: "img 1",
         left: "20%",
+        head: "UNGANISHA",
+        text: "Experimental Website / WebGL / 3D",
     },
 ]
 const Hero = () => {
     const wrapperRefs = useRef([])
     const imageRefs = useRef([])
-    const [fillColor, setfillColor] = useState("white")
+    const textRef = useRef()
     const [hoveredIndex, setHoveredIndex] = useState(null)
-    const [imageZ, setimageZ] = useState(0)
 
     const handleMouseEnter = (index) => setHoveredIndex(index)
 
@@ -58,12 +61,17 @@ const Hero = () => {
         const { left, top, width, height } = wrapper.getBoundingClientRect()
         const x = e.clientX - left - width / 2
         const y = e.clientY - top - height / 2
-        setfillColor("#212121")
+        // setfillColor("#212121")
         gsap.to(image, {
             x,
             y,
             duration: 0.5,
             ease: "power2.out",
+        })
+        const text = textRef.current
+        gsap.to(text, {
+            fill: "#212121",
+            duration: 0.2,
         })
     }
 
@@ -77,7 +85,13 @@ const Hero = () => {
             duration: 0.5,
             onComplete: () => setHoveredIndex(null),
         })
-        setfillColor("white")
+        const text = textRef.current
+        console.log(textRef)
+        gsap.to(text, {
+            fill: "white",
+            duration: 0.2,
+        })
+        // setfillColor("white")
     }
 
     return (
@@ -117,13 +131,18 @@ const Hero = () => {
                                     } `}
                                 />
                                 <span
-                                    className={`absolute left-90 top-40 bg-black text-white text-sm px-2 py-1 rounded transition-opacity duration-300 z-99 ${
+                                    className={`absolute left-90 top-40 text-white px-2 py-1 rounded transition-opacity duration-300 z-99 pointer-events-none${
                                         hoveredIndex === index
                                             ? "opacity-100"
                                             : "opacity-0"
                                     }`}
                                 >
-                                    {thumb.text}
+                                    <h1 class="text-wrap text-5xl font-extrabold">
+                                        {thumb.head}
+                                    </h1>
+                                    <p class="text-nowrap text-md">
+                                        {thumb.text}
+                                    </p>
                                 </span>
                             </div>
                         ) : hoveredIndex !== null ? (
@@ -152,14 +171,18 @@ const Hero = () => {
                 spacing="133"
                 data-v-a2054a92=""
             >
-                <text class="w-full" transform="">
+                <text
+                    ref={textRef}
+                    style={{ fill: "white" }}
+                    class="w-full"
+                    transform=""
+                >
                     <tspan
                         x="50%"
                         y="110"
                         textAnchor="middle"
                         alignmentBaseline="top"
                         style={{
-                            fill: fillColor,
                             opacity: 1,
                             visibility: "inherit",
                             strokeDashoffset: 0,
@@ -177,7 +200,6 @@ const Hero = () => {
                         textAnchor="middle"
                         alignmentBaseline="top"
                         style={{
-                            fill: fillColor,
                             opacity: 1,
                             visibility: "inherit",
                             strokeDashoffset: 0,
@@ -194,7 +216,6 @@ const Hero = () => {
                         textAnchor="middle"
                         alignmentBaseline="top"
                         style={{
-                            fill: fillColor,
                             opacity: 1,
                             visibility: "inherit",
                             strokeDashoffset: 0,
@@ -211,7 +232,6 @@ const Hero = () => {
                         textAnchor="middle"
                         alignmentBaseline="top"
                         style={{
-                            fill: fillColor,
                             opacity: 1,
                             visibility: "inherit",
                             strokeDashoffset: 0,
@@ -228,7 +248,6 @@ const Hero = () => {
                         textAnchor="middle"
                         alignmentBaseline="top"
                         style={{
-                            fill: fillColor,
                             opacity: 1,
                             visibility: "inherit",
                             strokeDashoffset: 0,
