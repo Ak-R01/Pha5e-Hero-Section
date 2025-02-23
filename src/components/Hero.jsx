@@ -7,7 +7,7 @@ import React from "react"
 const thumbnails = [
     {
         id: 1,
-        src: "src/assets/img1.png",
+        src: "public/assets/img1.png",
         alt: "Thumbnail 1",
         top: "50px",
         left: "",
@@ -17,7 +17,7 @@ const thumbnails = [
     },
     {
         id: 2,
-        src: "src/assets/img2.png",
+        src: "public/assets/img2.png",
         alt: "Thumbnail 2",
         top: "120px",
         left: "15%",
@@ -26,7 +26,7 @@ const thumbnails = [
     },
     {
         id: 3,
-        src: "src/assets/img4.jpg",
+        src: "public/assets/img4.jpg",
         alt: "Thumbnail 3",
         top: "350px",
         left: "",
@@ -36,7 +36,7 @@ const thumbnails = [
     },
     {
         id: 4,
-        src: "src/assets/img3.png",
+        src: "public/assets/img3.png",
         alt: "Thumbnail 4",
         top: "450px",
         left: "20%",
